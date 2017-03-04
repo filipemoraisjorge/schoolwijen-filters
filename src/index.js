@@ -38,16 +38,16 @@ class App extends Component {
     };
 
     getSchoolDetail(selectedSchool) {
-    const url = `https://schoolwijzer.amsterdam.nl/en/api/v1/detail/po/brin/${selectedSchool.brin}/vestigingsnummer/${selectedSchool.vestigingsnummer}`;
+        const url = `https://schoolwijzer.amsterdam.nl/en/api/v1/detail/po/brin/${selectedSchool.brin}/vestigingsnummer/${selectedSchool.vestigingsnummer}`;
 
-    $.getJSON(url, (data) => {
+        $.getJSON(url, (data) => {
 
-        this.setState({
-           selectedSchoolDetail: data.results[0]
+            this.setState({
+                selectedSchoolDetail: data.results[0]
+            });
+
         });
-
-    });
-};
+    };
 
     render() {
         //const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
@@ -55,7 +55,6 @@ class App extends Component {
         /*
          <SearchBar onSearchTermChange={videoSearch} />
          */
-
 
         return (
             <div className="container-fluid">
@@ -65,13 +64,18 @@ class App extends Component {
                     </div>
                     <div className="col-md-4">
                         <SchoolList
-                            onSchoolSelect={selectedSchool =>{ this.setState({selectedSchool}); this.getSchoolDetail(selectedSchool);}  }
+                            onSchoolSelect={selectedSchool => {
+                                this.setState({selectedSchool});
+                                this.getSchoolDetail(selectedSchool);
+                            }  }
                             schools={this.state.schools}/>
                     </div>
                 </div>
                 <div className="row">
-                    <SchoolsMap schools={this.state.schools}
-                                selectedSchool={this.state.selectedSchool}/>
+                    <div className="col-md-12" style={{height: 50+'vh'}}>
+
+                        <SchoolsMap />
+                    </div>
                 </div>
             </div>
         );
@@ -79,5 +83,9 @@ class App extends Component {
 
 
 }
+/*
+ <SchoolsGoogleMap schools={this.state.schools}
+ selectedSchool={this.state.selectedSchool} />
+ */
 
 ReactDOM.render(<App />, document.querySelector('.container'));
