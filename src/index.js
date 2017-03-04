@@ -72,7 +72,7 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12" style={{height: 50 + 'vh'}}>
+                    <div className="col-md-12" style={{height: 80 + 'vh'}}>
 
                         <SchoolsMap
                             schools={this.state.schools}
