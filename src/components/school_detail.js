@@ -6,11 +6,16 @@ const SchoolDetail = ({school}) => {
   }
 
   const schoolId = school.id;
-  const url = `https://schoolwijzer.amsterdam.nl/en/api/v1/detail/po/brin/${school.brin}/vestigingsnummer/${school.vestigingsnummer}`;
 
   return (
     <div className="school-detail col-md-8">
-        {school.naam}
+        <h2>{school.naam}</h2>
+        <div>year {school.schooljaar[0].jaar} Number of pupils {school.schooljaar[0].leerlingen}</div>
+        <div>{school.profiel}</div>
+        <div><a href={school.adres.website} target="_blank">{school.adres.website}</a></div>
+        <div><a href={school.schoolwijzer_url} target="_blank">schoolwijzer_url</a></div>
+        <div>{school.grondslag}</div>
+
     </div>
   );
 };
