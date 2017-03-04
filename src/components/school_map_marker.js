@@ -3,18 +3,7 @@
  */
 import React, {Component} from 'react';
 
-const MARKER_SIZE = 30;
-const markerStyle = {
-    position: 'absolute',
-    width: MARKER_SIZE,
-    height: MARKER_SIZE,
-    left: -MARKER_SIZE / 2,
-    top: -MARKER_SIZE / 2,
-    background: '#FD3',
-    opacity: 0.8,
-    borderRadius: 50,
-    paddingTop: MARKER_SIZE / 4
-};
+
 
 class SchoolMapMarker extends Component {
 
@@ -22,6 +11,19 @@ class SchoolMapMarker extends Component {
         super(props);
     }
     render() {
+        const MARKER_SIZE = 30;
+        const markerStyle = {
+            position: 'absolute',
+            width: MARKER_SIZE,
+            height: MARKER_SIZE,
+            left: -MARKER_SIZE / 2,
+            top: -MARKER_SIZE / 2,
+            opacity: 0.6,
+            borderRadius: 50,
+            paddingTop: MARKER_SIZE / 4,
+            background: (this.props.selected ? '#F00' :'#FD3')
+        };
+
         return (
             <div className="text-center" style={markerStyle}>{this.props.text}</div>
         );

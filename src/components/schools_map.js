@@ -13,6 +13,10 @@ class SchoolsMap extends Component {
         super(props);
     }
 
+    isSelected(school) {
+        return this.props.selectedSchool.id === school.id;
+    }
+
     render() {
         return (
             <GoogleMap
@@ -23,11 +27,13 @@ class SchoolsMap extends Component {
                 defaultZoom={12}
             >
                 {this.props.schools.map(school => (
+
                     <SchoolMapMarker
                         key={school.id}
                         lat={school.coordinaten.lat}
                         lng={school.coordinaten.lng}
-                        text={school.id}/>
+                        text={school.id}
+                        selected={this.isSelected(school)}/>
                 ))}
             </GoogleMap>
         );

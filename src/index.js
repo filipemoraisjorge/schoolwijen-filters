@@ -72,9 +72,11 @@ class App extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12" style={{height: 50+'vh'}}>
+                    <div className="col-md-12" style={{height: 50 + 'vh'}}>
 
-                        <SchoolsMap schools={this.state.schools}/>
+                        <SchoolsMap
+                            schools={this.state.schools}
+                            selectedSchool={this.state.selectedSchool} />
                     </div>
                 </div>
             </div>
