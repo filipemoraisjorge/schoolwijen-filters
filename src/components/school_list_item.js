@@ -9,8 +9,8 @@ const SchoolListItem = ({school, onSchoolSelect}) => {
         <div className="media-left">
         </div>
         <div className="media-body">
-          <div className="media-heading">{school.naam}</div>
-          <div>{school.id}</div>
+          <div className="media-heading">{school.id}</div>
+
         </div>
       </div>
     </li>

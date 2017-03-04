@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 
-const MARKER_SIZE = 40;
+const MARKER_SIZE = 30;
 const markerStyle = {
     position: 'absolute',
     width: MARKER_SIZE,
@@ -11,7 +11,7 @@ const markerStyle = {
     left: -MARKER_SIZE / 2,
     top: -MARKER_SIZE / 2,
     background: '#FD3',
-    opacity: 0.5,
+    opacity: 0.8,
     borderRadius: 50,
     paddingTop: MARKER_SIZE / 4
 };
