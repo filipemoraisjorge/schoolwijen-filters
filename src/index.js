@@ -76,7 +76,12 @@ class App extends Component {
 
                         <SchoolsMap
                             schools={this.state.schools}
-                            selectedSchool={this.state.selectedSchool} />
+                            selectedSchool={this.state.selectedSchool}
+                            onSchoolSelect={selectedSchool => {
+                                this.setState({selectedSchool});
+                                this.getSchoolDetail(selectedSchool);
+                            }  }
+                        />
                     </div>
                 </div>
             </div>

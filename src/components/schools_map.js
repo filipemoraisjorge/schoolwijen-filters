@@ -33,7 +33,10 @@ class SchoolsMap extends Component {
                         lat={school.coordinaten.lat}
                         lng={school.coordinaten.lng}
                         text={school.id}
-                        selected={this.isSelected(school)}/>
+                        selected={this.isSelected(school)}
+                        school={school}
+                        onSchoolSelect={this.props.onSchoolSelect}
+                    />
                 ))}
             </GoogleMap>
         );
