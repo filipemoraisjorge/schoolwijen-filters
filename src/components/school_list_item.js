@@ -10,7 +10,7 @@ const SchoolListItem = ({school, onSchoolSelect}) => {
         </div>
         <div className="media-body">
           <div className="media-heading">{school.naam}</div>
-          <div><a href={school.schoolwijzer_url} /></div>
+          <div>{school.id}</div>
         </div>
       </div>
     </li>
