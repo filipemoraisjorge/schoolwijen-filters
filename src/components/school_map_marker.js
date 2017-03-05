@@ -10,7 +10,21 @@ class SchoolMapMarker extends Component {
         super(props);
     }
 
+    getMarkerColor(school) {
+        // default color
+        let color = "#FD3";
+        // not participating
+        if (!school.neemt_deel_aan_aanmeldprocedure) {
+            color = "gray";
+        }
+        // is selected?
+        color = (this.props.selected ? '#F00' : color);
+
+        return color
+    }
+
     render() {
+
         const MARKER_SIZE = 30;
         const markerStyle = {
             position: 'absolute',
@@ -21,7 +35,7 @@ class SchoolMapMarker extends Component {
             opacity: 0.6,
             borderRadius: 50,
             paddingTop: MARKER_SIZE / 4,
-            background: (this.props.selected ? '#F00' : '#FD3')
+            background: this.getMarkerColor(this.props.school)
         };
 
         return (
