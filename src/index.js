@@ -5,7 +5,6 @@ import $ from 'jquery';
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import SearchBar from './components/search_bar';
 import SchoolList from './components/school_list';
 import SchoolDetail from './components/school_detail';
 import SchoolsMap from './components/schools_map';
@@ -16,6 +15,7 @@ class App extends Component {
         super(props);
 
         this.state = {
+            method: "",
             schools: [],
             selectedSchool: null
         };
@@ -28,7 +28,7 @@ class App extends Component {
         // language: nl en
         // method: lijst detail
         // schooltype: po vo vve
-        let url = "https://schoolwijzer.amsterdam.nl/nl/api/v1/lijst/po/onderwijsconcept/Montessori";
+        let url = `https://schoolwijzer.amsterdam.nl/nl/api/v1/lijst/po/onderwijsconcept/${this.state.method}`;
 
         $.getJSON(url, (data) => {
             this.setState({
@@ -79,48 +79,6 @@ class App extends Component {
             + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(sourceText);
 
         console.log("url", url);
-        /* fetchUrl(url, (data) => {
-         console.log(data);
-
-         let result = JSON.parse(data)
-         let translatedText = result[0][0][0];
-         console.log(translatedText);
-
-         });
-         */
-        /*
-         let arr =
-         [
-         [
-         [
-         "The Amstel is a new modern Montessori school in the district Amstelkwartier using blended learning: combining concrete (Montessori) material and the use of iPads with apps and websites. ",
-         "De Amstel is een nieuwe moderne Montessorischool in de wijk Amstelkwartier die gebruik maakt van blended learning: het combineren van concreet (Montessori-) materiaal en de inzet van iPads met apps en websites.",
-         ,
-         ,
-         0
-         ],
-         [
-         "The school attaches great importance to a good combination between real and digital material",
-         "De school hecht veel waarde aan een goede combinatie tussen concreet en digitaal materiaal",
-         ,
-         ,
-         0
-         ]
-         ]
-         ,
-         ,
-         "nl"
-         ]
-         console.log("translate", arr);
-         let arrT = arr[0];
-
-         let arrPhrases = arrT.map((phrase) => {
-         return phrase[0];
-         });
-         console.log("en", arrPhrases);
-         let finalT = arrPhrases.join("\n");
-         console.log("final", finalT);
-         */
 
 
         $.get(url, (data) => {
@@ -141,6 +99,12 @@ class App extends Component {
         });
     }
 
+    onChangeMethod(method) {
+        this.setState({method});
+        this.fetchSchoolListAndDetails();
+        console.log(this.state.method);
+    }
+
     render() {
         //const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
 
@@ -149,7 +113,17 @@ class App extends Component {
          */
 
         return (
+
             <div className="container-fluid">
+                <div className="row">
+                    <ul>
+                        <li onClick={() => this.onChangeMethod("Dalton")}><a  href="#">Dalton</a></li>
+                        <li onClick={() => this.onChangeMethod("Montessori")}><a href="#">Montessori</a></li>
+                        <li onClick={() => this.onChangeMethod("Jenaplan")}><a href="#">Jenaplan</a></li>
+                        <li onClick={() => this.onChangeMethod("Kunstmagneet")}><a href="#">Kunstmagneet</a></li>
+                    </ul>
+                </div>
+
                 <div className="row">
                     <div className="col-md-8">
                         <SchoolDetail school={this.state.selectedSchoolDetail}/>

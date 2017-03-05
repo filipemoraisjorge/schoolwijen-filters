@@ -11,6 +11,7 @@ class SchoolsMap extends Component {
 
     constructor(props) {
         super(props);
+
     }
 
     isSelected(school) {
