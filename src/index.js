@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 //var fetchUrl = require("fetch").fetchUrl;
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SchoolList from './components/school_list';
 import SchoolDetail from './components/school_detail';
@@ -21,6 +21,10 @@ class App extends Component {
         };
 
         this.fetchSchoolListAndDetails("");
+    }
+
+    isSelected(school) {
+        return this.state.selectedSchool.id === school.id;
     }
 
     fetchSchoolListAndDetails(method) {
@@ -93,7 +97,7 @@ class App extends Component {
             let finalT = arrPhrases.join("\n");
             console.log("final", finalT);
             this.setState({
-                selectedSchoolDetail: Object.assign(this.state.selectedSchoolDetail, {profiel: finalT})
+                selectedSchoolDetail: Object.assign(this.state.selectedSchoolDetail, { profiel: finalT })
             });
 
         });
@@ -118,7 +122,7 @@ class App extends Component {
             <div className="container-fluid">
                 <div className="row">
                     <ul>
-                        <li onClick={() => this.onChangeMethod("Dalton")}><a  href="#">Dalton</a></li>
+                        <li onClick={() => this.onChangeMethod("Dalton")}><a href="#">Dalton</a></li>
                         <li onClick={() => this.onChangeMethod("Montessori")}><a href="#">Montessori</a></li>
                         <li onClick={() => this.onChangeMethod("Jenaplan")}><a href="#">Jenaplan</a></li>
                         <li onClick={() => this.onChangeMethod("Kunstmagneet")}><a href="#">Kunstmagneet</a></li>
@@ -127,27 +131,34 @@ class App extends Component {
 
                 <div className="row">
                     <div className="col-md-8">
-                        <SchoolDetail school={this.state.selectedSchoolDetail}/>
+                        <SchoolDetail school={this.state.selectedSchoolDetail} />
                     </div>
                     <div className="col-md-4">
                         <SchoolList
                             onSchoolSelect={selectedSchool => {
-                                this.setState({selectedSchool});
+                                this.setState({ selectedSchool });
                                 this.getSchoolDetail(selectedSchool);
-                            }  }
-                            schools={this.state.schools}/>
+                            }}
+                            isSelected={school => {
+                                return this.isSelected(school);
+                            }}
+                            schools={this.state.schools}
+                            schoolSelected={this.state.selectedSchool} />
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-12" style={{height: 80 + 'vh'}}>
+                    <div className="col-md-12" style={{ height: 80 + 'vh' }}>
 
                         <SchoolsMap
                             schools={this.state.schools}
                             selectedSchool={this.state.selectedSchool}
                             onSchoolSelect={selectedSchool => {
-                                this.setState({selectedSchool});
+                                this.setState({ selectedSchool });
                                 this.getSchoolDetail(selectedSchool);
-                            }  }
+                            }}
+                            isSelected={school => {
+                                return this.isSelected(school);
+                            }}
                         />
                     </div>
                 </div>

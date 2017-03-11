@@ -14,9 +14,7 @@ class SchoolsMap extends Component {
 
     }
 
-    isSelected(school) {
-        return this.props.selectedSchool.id === school.id;
-    }
+
 
     render() {
         return (
@@ -34,7 +32,7 @@ class SchoolsMap extends Component {
                         lat={school.coordinaten.lat}
                         lng={school.coordinaten.lng}
                         text={school.id}
-                        selected={this.isSelected(school)}
+                        selected={this.props.isSelected(school)}
                         school={school}
                         onSchoolSelect={this.props.onSchoolSelect}
                     />
