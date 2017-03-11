@@ -15,20 +15,20 @@ class App extends Component {
         super(props);
 
         this.state = {
-            method: "",
+            selectedMethod: "",
             schools: [],
             selectedSchool: null
         };
 
-        this.fetchSchoolListAndDetails();
+        this.fetchSchoolListAndDetails("");
     }
 
-    fetchSchoolListAndDetails() {
+    fetchSchoolListAndDetails(method) {
         // https://schoolwijzer.amsterdam.nl/{language}/api/v1/{method}/{schooltype}/{parameters}
         // language: nl en
         // method: lijst detail
         // schooltype: po vo vve
-        let url = `https://schoolwijzer.amsterdam.nl/nl/api/v1/lijst/po/onderwijsconcept/${this.state.method}`;
+        let url = `https://schoolwijzer.amsterdam.nl/nl/api/v1/lijst/po/onderwijsconcept/${method}`;
 
         $.getJSON(url, (data) => {
             this.setState({
@@ -99,10 +99,11 @@ class App extends Component {
         });
     }
 
-    onChangeMethod(method) {
-        this.setState({method});
-        this.fetchSchoolListAndDetails();
-        console.log(this.state.method);
+    onChangeMethod(selectedMethod) {
+
+        //this.setState({selectedMethod: selectedMethod});
+        //console.log("onChangeMethod:","state:",this.state.selectedMethod,"arg:",selectedMethod);
+        this.fetchSchoolListAndDetails(selectedMethod);
     }
 
     render() {

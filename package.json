@@ -1,14 +1,14 @@
 {
-  "name": "redux-simple-starter",
+  "name": "schoolwijen-filters",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Better Filters for Amsterdam schoolwijen. React",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "git@github.com:filipemoraisjorge/schoolwijen-filters.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
+    "start": " open -a 'Google Chrome Canary' 'http://localhost:8080' --args --disable-web-security --user-data-dir=$HOME/profile-folder-name && node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Filipe Morais Jorge",
+  "license": "",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
